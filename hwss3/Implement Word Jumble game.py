@@ -1,26 +1,39 @@
-import random
+game_on = True
 
-word_list = ['avenger', 'zombie', 'youtube', 'anime', 'naruto', 'sasuke']
+while game_on == True:
+    import random
 
-r_andom = random.choice(word_list)
+    word_list = ['avenger', 'zombie', 'youtube', 'anime', 'naruto', 'sasuke']
 
-random_position = []
-list_1 = []
+    r_andom = random.choice(word_list)
 
-for a in r_andom:
-    list_1.append(a)
+    random_position = []
 
-for i in range(len(r_andom)):
-    x = random.choice(list_1)
-    list_1.remove(x)
-    random_position.append(x)
+    list_1 = []
 
-print(*random_position)
+    for _ in r_andom:
+        list_1.append(_)
 
-user_answer = input("Your answer : ").lower()
+    for _ in range(len(r_andom)):
+        x = random.choice(list_1)
+        list_1.remove(x)
+        random_position.append(x)
 
-if user_answer == r_andom:
-    print("Hura")
-else:
-    print(":(")
+    print(*random_position)
+
+    user_answer = input('Your answer: ').lower()
+
+    if user_answer == r_andom:
+        print('Hura')
+    else:
+        print(':(')
+    user_game = input('Do you want to play again (type no to stop playing and type everything else to play again): ').lower()
+    if user_game == 'no':
+        game_on = False
+    else:
+        game_on = True
+
+
+
+
 
