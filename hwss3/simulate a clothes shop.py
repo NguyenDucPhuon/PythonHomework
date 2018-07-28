@@ -17,16 +17,25 @@ while question_on == True:
         print(*items, sep=', ')
 
     if choice == 'U':
-        update_position = int(input('Update Position : ')) - 1
-        new_iten = input('New item ? ')
-        items[update_position] = new_iten
-        print('Our items :', end=' ')
-        print(*items, sep=', ')
+        while question_on == True:
+            update_position = int(input('Update Position : '))
+            while update_position > len(items) or update_position < -len(items):
+                print('We do not have that position in our items, please try again')
+                update_position = int(input('Update Position : '))
+            new_iten = input('New item ? ')
+            items[update_position-1] = new_iten
+            print('Our items :', end=' ')
+            print(*items, sep=', ')
+            break
 
     if choice == 'D':
-        delete_position = int(input('Delete position ? ')) - 1
-        items.pop(delete_position)
-        print('Our items :', end=' ')
-        print(*items, sep=', ')
-
+        while question_on == True:
+            delete_position = int(input('Delete position : '))
+            while delete_position > len(items) or delete_position < -len(items):
+                print('We do not have that position in our items, please try again')
+                delete_position = int(input('Delete Position : '))
+            items.pop(delete_position-1)
+            print('Our items :', end=' ')
+            print(*items, sep=', ')
+            break
 
