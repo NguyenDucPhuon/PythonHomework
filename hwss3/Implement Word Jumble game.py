@@ -17,7 +17,7 @@ for i in range(len(r_andom)):
 
 print(*random_position)
 
-user_answer = input("Your answer : ")
+user_answer = input("Your answer : ").lower()
 
 if user_answer == r_andom:
     print("Hura")
