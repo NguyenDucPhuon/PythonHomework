@@ -2,7 +2,7 @@ list_1 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 
 
 list_2 = []
 
-user_string = input("What is your fucking string ????? ")
+user_string = input("What is your fucking string ????? ").lower()
 
 for _ in user_string:
     list_2.append(_)
