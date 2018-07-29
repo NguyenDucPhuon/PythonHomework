@@ -13,7 +13,7 @@ inventory['backpack'].remove('dagger')
 inventory['gold'] += 50
 
 for _ in inventory:
-    if inventory[_] == 550:
+    if type(inventory[_]) == int:
         print(_, " : ", inventory[_])
     else:
         print(_, ' : ', end=' ')
