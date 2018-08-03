@@ -7,7 +7,8 @@ user_string = input("What is your fucking string ????? ").lower()
 for _ in user_string:
     list_2.append(_)
 for letters in list_1:
-    print(letters, list_2.count(letters))
+    if list_2.count(letters) != 0 :
+        print(letters, list_2.count(letters))
 
 
 
