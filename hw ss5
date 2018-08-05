@@ -1,0 +1,96 @@
+import pygame
+import random
+
+pygame.init()
+
+pygame.display.set_caption('Pong Game')
+
+SIZE = (600, 600)
+BG_COLOR = (66, 134, 244)
+
+canvas = pygame.display.set_mode(SIZE)
+
+clock = pygame.time.Clock()
+
+paddle_image = pygame.image.load('assets/paddle.png')
+ball_image = pygame.image.load('assets/ball.png')
+
+
+x1 = 0
+y1 = 225
+x2 = 570
+y2 = 225
+ball_x = 290
+ball_y = 290
+ball_v_x = 1.7
+ball_v_y = -5
+
+w_pressed = False
+s_pressed = False
+up_pressed = False
+down_pressed = False
+
+loop = True
+
+while loop:
+    events = pygame.event.get()
+    for e in events:
+        if e.type == pygame.QUIT:
+            loop = False
+        elif e.type == pygame.KEYDOWN:
+            if e.key == pygame.K_w:
+                w_pressed = True
+            elif e.key == pygame.K_s:
+                s_pressed = True
+            elif e.key == pygame.K_UP:
+                up_pressed = True
+            elif e.key == pygame.K_DOWN:
+                down_pressed = True
+        elif e.type == pygame.KEYUP:
+            if e.key == pygame.K_w:
+                w_pressed = False
+            elif e.key == pygame.K_s:
+                s_pressed = False
+            elif e.key == pygame.K_UP:
+                up_pressed = False
+            elif e.key == pygame.K_DOWN:
+                down_pressed = False
+    if w_pressed:
+        y1 -= 5
+    if s_pressed:
+        y1 += 5
+    if up_pressed:
+        y2 -= 5
+    if down_pressed:
+        y2 += 5
+
+    ball_x += ball_v_x
+    ball_y += ball_v_y
+
+    if ball_x <= 30 and ball_y in range(y1, y1+121):
+        ball_v_x = -ball_v_x
+
+    if ball_x >= 550 and ball_y in range(y2, y2+121):
+        ball_v_x = -ball_v_x
+
+    if ball_x >= 580 or ball_x <= 0:
+        ball_v_x = -ball_v_x
+    if ball_y >= 580 or ball_y <= 0:
+        ball_v_y = -ball_v_y
+
+    if y2 <= 0:
+        y2 = 0
+    if y2 >= 480:
+        y2 = 480
+    if y1 <= 0:
+        y1 = 0
+    if y1 >= 480:
+        y1 = 480
+
+    canvas.fill(BG_COLOR)
+
+    canvas.blit(paddle_image, (x1, y1))
+    canvas.blit(paddle_image, (x2, y2))
+    canvas.blit(ball_image, (ball_x, ball_y))
+    clock.tick(60)
+    pygame.display.flip()
